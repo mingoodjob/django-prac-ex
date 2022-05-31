@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST">
+        {# cross site request forgery -> 해킹 공격의 일종, 요청을 만들어서 실제 요청인것마냥 보내는것, 글을 100만개 쓰여지도록 요청을 만들 수도 있음 #}
+        {% csrf_token %}
+        <input name="title">
+        <input name="content">
+        <select name="category">
+            {% for category in categories %}
+            <option value="{{ category.name }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">글쓰기</button>
+    </form>
+</body>
+</html>
